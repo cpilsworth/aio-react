@@ -14,12 +14,13 @@
  */
 
 
-const fetch = require('node-fetch')
 const { Core } = require('@adobe/aio-sdk')
-const { errorResponse, getBearerToken, stringParameters, checkMissingRequestInputs } = require('../utils')
+const { errorResponse, stringParameters } = require('../utils')
+
+import * as ReactDOMServer from 'react-dom/server';
 
 // main function that will be executed by Adobe I/O Runtime
-async function main (params) {
+async function main(params) {
   // create a Logger
   const logger = Core.Logger('main', { level: params.LOG_LEVEL || 'info' })
 
@@ -30,27 +31,7 @@ async function main (params) {
     // log parameters, only if params.LOG_LEVEL === 'debug'
     logger.debug(stringParameters(params))
 
-    // check for missing request input parameters and headers
-    const requiredParams = [/* add required params */]
-    const requiredHeaders = ['Authorization']
-    const errorMessage = checkMissingRequestInputs(params, requiredParams, requiredHeaders)
-    if (errorMessage) {
-      // return and log client errors
-      return errorResponse(400, errorMessage, logger)
-    }
-
-    // extract the user Bearer token from the Authorization header
-    const token = getBearerToken(params)
-
-    // replace this with the api you want to access
-    const apiEndpoint = 'https://adobeioruntime.net/api/v1'
-
-    // fetch content from external api endpoint
-    const res = await fetch(apiEndpoint)
-    if (!res.ok) {
-      throw new Error('request to ' + apiEndpoint + ' failed with status code ' + res.status)
-    }
-    const content = await res.json()
+    const content = ReactDOMServer.renderToString(<App />)
     const response = {
       statusCode: 200,
       body: content
