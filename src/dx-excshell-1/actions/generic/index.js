@@ -18,6 +18,7 @@ const { Core } = require('@adobe/aio-sdk')
 const { errorResponse, stringParameters } = require('../utils')
 
 import * as ReactDOMServer from 'react-dom/server';
+import { App } from './app'
 
 // main function that will be executed by Adobe I/O Runtime
 async function main(params) {
