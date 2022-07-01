@@ -25,6 +25,7 @@
         "jest": "^27.2.4"
     },
     "scripts": {
+        "build": "npx webpack --config webpack.config.js",
         "test": "jest --passWithNoTests ./test",
         "e2e": "jest --collectCoverage=false --testRegex ./e2e"
     },

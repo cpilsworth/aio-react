@@ -1,6 +1,15 @@
 const path = require('path');
 
 module.exports = {
+    mode: 'development',
+    entry: ['./src/dx-excshell-1/actions/generic/index.js'],
+    output: {
+        libraryTarget: 'commonjs2',
+        filename: 'dist/dx-excshell-1/actions/generic/index.js',
+        clean: true
+    },
+    target: 'node',
+    // config above should be provided by aio build
     module: {
         rules: [
             {
