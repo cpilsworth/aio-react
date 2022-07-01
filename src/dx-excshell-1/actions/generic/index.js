@@ -17,8 +17,8 @@
 const { Core } = require('@adobe/aio-sdk')
 const { errorResponse, stringParameters } = require('../utils')
 
-import * as ReactDOMServer from 'react-dom/server';
-import { App } from './app'
+
+import { render } from './app.jsx'
 
 // main function that will be executed by Adobe I/O Runtime
 async function main(params) {
@@ -32,10 +32,9 @@ async function main(params) {
     // log parameters, only if params.LOG_LEVEL === 'debug'
     logger.debug(stringParameters(params))
 
-    const content = ReactDOMServer.renderToString(<App />)
     const response = {
       statusCode: 200,
-      body: content
+      body: render()
     }
 
     // log the response status code
